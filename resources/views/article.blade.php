@@ -1,4 +1,4 @@
-@extends('master.master')
+@extends('master.masterPost')
 
 @section('header', 'Article')
 

@@ -1,9 +1,9 @@
-@extends('master.master')
+@extends('master.masterHome')
 
 @section('header', 'Home')
 
 @section('sidebar')
-    <h1>Selamat Datang</h1>
+    Selamat Datang
 @endsection
 
 @section('konten')
