@@ -17,6 +17,6 @@
 
 Route::get('/hello', 'WelcomeController@hello');
 
-Route::get('/', 'PageController@welcome');
-Route::get('/about', 'PageController@about');
-Route::get('/articles/{id}', 'PageController@articles');
+Route::get('/', 'HomeController@welcome');
+Route::get('/about', 'AboutController@about');
+Route::get('/articles/{id}', 'ArticleController@articles');
