@@ -11,8 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/hello', 'WelcomeController@hello');
+Route::get('/', function() {
+    return 'Selamat Datang';
+});
+
+Route::get('/about', function() {
+    return 'NIM : 1931710137<br>Nama : Ahmad Ridlo Suhardi';
+});
+
+Route::get('/articles/{id}', function($id) {
+    return 'Halaman artikel dengan id '.$id;
+});
