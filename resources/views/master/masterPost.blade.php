@@ -37,12 +37,6 @@
           <li class="nav-item">
             <a class="nav-link" href="#">About</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
         </ul>
       </div>
     </div>
@@ -57,7 +51,7 @@
       <div class="col-lg-8">
 
         <!-- Title -->
-        <h1 class="mt-4">@yield('header') {{ $id }}</h1>
+        <h1 class="mt-4">{{ $articleFind->title }}</h1>
 
         <!-- Author -->
         <p class="lead">
@@ -73,12 +67,14 @@
         <hr>
 
         <!-- Preview Image -->
-        <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+        <img class="img-fluid rounded" src="{{ $articleFind->featured_image }}" alt="">
 
         <hr>
 
         <!-- Post Content -->
-        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
+        <h2>Hasil konten:</h2>
+        <p class="lead">{{ $articleFind->content }}</p>
+        <hr>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
 
