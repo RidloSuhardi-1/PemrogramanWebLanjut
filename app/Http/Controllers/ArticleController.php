@@ -9,7 +9,6 @@ class ArticleController extends Controller
 {
     public function articles($id) {
         $articleFind = Article::find($id);
-
         return view('article', ['id' => $id])->with(compact('articleFind'));
     }
 }
