@@ -1,0 +1,203 @@
+/* border crousel slide */
+
+.carousel {
+    border-top: 5px solid rgb(30, 144, 255);
+    border-bottom: 5px solid rgb(177, 177, 177);
+}
+
+/* jumbtron background */
+.jumbotron {
+    background: url('../../../../img/heroImage.png') no-repeat center;
+    background-size: cover;
+
+    border-bottom: 5px solid royalblue;
+}
+
+.jumbotron .container h1 {
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 0 5px royalblue;
+}
+
+.jumbotron .container .lead {
+    color: #fff;
+}
+
+
+/* style judul artikel */
+
+.artic-ttl {
+    font-size: 22px;
+    text-align: center;
+}
+
+/* artikel pagination */
+
+.wrapper {
+    width: 100%;
+}
+
+.paginate {
+    margin-left: 45%;
+}
+
+/* overlay */
+
+.overlay {
+    width: 0;
+    height: 0;
+    position: fixed;
+    background: rgba(0,0,0, 0);
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    overflow: hidden;
+    text-align: center;
+    transition: .5s;
+}
+
+.overlay:target {
+    width: auto;
+    height: auto;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0, .5);
+}
+
+.box-modal {
+    display: inline-block;
+    width: 600px;
+    background: #fff;
+    text-align: left;
+    padding: 15px;
+    margin-top: 150px;
+    border-radius: 5px;
+}
+
+.box-modal .modal-ttl {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.box-modal h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.box-modal span {
+    display: block;
+    margin-bottom: 3px;
+}
+
+.box-modal .btn-modal {
+    float: right;
+    font-size: 14px;
+}
+
+/* ketika overlay di target maka box modal muncul */
+
+.overlay:target .box-modal {
+    transform: scale(0);
+    animation: fadeOut .4s .3s linear forwards;
+}
+
+/* pricing */
+  
+  .card-deck .card {
+    min-width: 220px;
+  }
+  
+
+/* starter template */
+
+.starter-template h1, p {
+    padding-bottom: 12px;
+}
+
+.sub-field {
+    margin: auto;
+}
+
+/* donation layout */
+
+@media (max-width: 991.98px) {
+    .offcanvas-collapse {
+      position: fixed;
+      top: 56px; /* Height of navbar */
+      bottom: 0;
+      left: 100%;
+      width: 100%;
+      padding-right: 1rem;
+      padding-left: 1rem;
+      overflow-y: auto;
+      visibility: hidden;
+      background-color: #343a40;
+      transition: visibility .3s ease-in-out, -webkit-transform .3s ease-in-out;
+      transition: transform .3s ease-in-out, visibility .3s ease-in-out;
+      transition: transform .3s ease-in-out, visibility .3s ease-in-out, -webkit-transform .3s ease-in-out;
+    }
+    .offcanvas-collapse.open {
+      visibility: visible;
+      -webkit-transform: translateX(-100%);
+      transform: translateX(-100%);
+    }
+  }
+  
+  .nav-scroller {
+    position: relative;
+    z-index: 2;
+    height: 2.75rem;
+    overflow-y: hidden;
+  }
+  
+  .nav-scroller .nav {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    margin-top: -1px;
+    overflow-x: auto;
+    color: rgba(255, 255, 255, .75);
+    text-align: center;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .nav-underline .nav-link {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    font-size: .875rem;
+    color: #6c757d;
+  }
+  
+  .nav-underline .nav-link:hover {
+    color: #007bff;
+  }
+  
+  .nav-underline .active {
+    font-weight: 500;
+    color: #343a40;
+  }
+  
+  .text-white-50 { color: rgba(255, 255, 255, .5); }
+  
+  .bg-purple { background-color: #6f42c1; }
+  
+  .lh-100 { line-height: 1; }
+  .lh-125 { line-height: 1.25; }
+  .lh-150 { line-height: 1.5; }
+  
+
+/* keyframes */
+
+@keyframes fadeOut {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
