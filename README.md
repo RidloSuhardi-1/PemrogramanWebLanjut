@@ -7,6 +7,44 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Kuis 1 - Project CMS [Ngodingers News - Berita Pemrograman Di Dunia]
+Model
+1. About
+2. Article
+
+Migration
+1. create_artikels_table
+2. create_update_table
+
+Seeder
+1. ArticleTableSeeder (dummy)
+2. ArtikelTableSeeder
+3. UpdateTableSeeder
+
+Controller
+1. MasterController
+2. ArtikelsController
+3. TentangController
+4. DonationController
+
+Master Views [masterKuis]
+1. master.blade.php
+2. masterAbout.blade.php
+3. masterArticle.blade.php
+4. masterDonation.blade.php
+
+Child Views [childKuis]
+1. home.blade.php
+2. artikel.blade.php
+3. about.blade.php
+4. donasi.blade.php
+
+Routes
+1. Route::get('/', 'MasterController@articleList')->name('artikels');
+2. Route::get('/artikel/{id}', 'ArtikelsController@artikelFind');
+3. Route::get('/tentang', 'TentangController');
+4. Route::get('/donasi', 'DonationController');
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
