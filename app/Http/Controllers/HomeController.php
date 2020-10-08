@@ -3,18 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Article;
-use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
-    public function welcome() {
-        Cache::rememberForever('articles', function() {
-            return Article::all();
-        });
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
-        $articles = Article::all();
-        $articles = Cache::get('articles');
-        return view('home')->with(compact('articles'));
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        return view('home');
     }
 }

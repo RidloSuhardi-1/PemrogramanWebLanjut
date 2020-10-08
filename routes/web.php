@@ -15,14 +15,17 @@
 //     return view('welcome');
 // });
 
-Route::get('/hello', 'WelcomeController@hello');
+// Route::get('/hello', 'WelcomeController@hello');
 
-Route::get('/home', 'HomeController@welcome');
-Route::get('/about', 'AboutController@about');
-Route::get('/articles/{id}', 'ArticleController@articles');
+// Route::get('/', 'HomeController1@welcome');
+// Route::get('/about', 'AboutController@about');
+// Route::get('/articles/{id}', 'ArticleController@articles');
 
 // Routes Ngodingers News (KUIS 1)
-Route::get('/', 'MasterController@articleList')->name('artikels');
-Route::get('/artikel/{id}', 'ArtikelsController@artikelFind');
-Route::get('/tentang', 'TentangController');
-Route::get('/donasi', 'DonationController');
+// Route::get('/', 'MasterController@articleList')->name('artikels');
+// Route::get('/artikel/{id}', 'ArtikelsController@artikelFind');
+// Route::get('/tentang', 'TentangController');
+// Route::get('/donasi', 'DonationController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
