@@ -17,9 +17,9 @@
 
 // Route::get('/hello', 'WelcomeController@hello');
 
-// Route::get('/', 'HomeController1@welcome');
-// Route::get('/about', 'AboutController@about');
-// Route::get('/articles/{id}', 'ArticleController@articles');
+Route::get('/', 'HomeController1@welcome');
+Route::get('/about', 'AboutController@about');
+Route::get('/articles/{id}', 'ArticleController@articles');
 
 // Routes Ngodingers News (KUIS 1)
 // Route::get('/', 'MasterController@articleList')->name('artikels');
