@@ -49,11 +49,16 @@
             <div class="col-sm-4 offset-md-1 py-4">
               <h4 class="text-white">Hai Ngodingers Disini...</h4>
               <ul class="list-unstyled">
-                <li><a href="/" class="text-white">Home</a></li>
+                <li><a href="/dashboard" class="text-white">Home</a></li>
                 <li><a href="/tentang" class="text-white">Apa itu Ngodingers ?</a></li><hr>
                 <li><a href="/donasi" class="text-white">Donasi Ngodingers</a></li>
                 <hr>
-                <li><a href="#keluhan" class="text-white">Tanyakan keluhanmu ke CS Ngodingers</a></li>
+                <li><a href="#keluhan" class="text-white">Tanyakan keluhanmu ke CS Ngodingers</a></li><hr>
+                <li>
+                  <form action="{{ route('logout') }}" method="POST">
+                      <button type="submit">Logout</button>
+                  </form>
+                </li>
               </ul>
             </div>
           </div>
@@ -105,7 +110,7 @@
 
                 <div class="btn-group">
                   <a href="#{{ $col->id }}" class="btn btn-sm btn-outline-secondary">Detail artikel</a>
-                  <a class="btn btn-sm btn-outline-primary" href="/artikel/{{ $col->id }}">Baca artikel</a>
+                  <a class="btn btn-sm btn-outline-primary" href="/articles/{{ $col->id }}">Baca artikel</a>
                 </div>
               </div>
             </div>

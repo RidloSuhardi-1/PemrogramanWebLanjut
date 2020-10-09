@@ -38,8 +38,8 @@
             <a class="nav-link" href="#">About</a>
           </li>
           <li class="nav-item">
-            <form action="{{ route('logout') }}" method="POST">
-                <button class="nav-link" style="border: none; background: none;">Logout</button>
+            <form action="/logout" method="POST">
+                <button class="nav-link" style="border: none; background: none;">{{ __('Logout') }}</button>
             </form>
           </li>
         </ul>

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Cache;
 
 class HomeController1 extends Controller
 {
-    public function welcome() {
+    public function home() {
         Cache::rememberForever('articles', function() {
             return Article::all();
         });

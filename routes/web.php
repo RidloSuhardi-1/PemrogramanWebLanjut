@@ -17,9 +17,9 @@
 
 // Route::get('/hello', 'WelcomeController@hello');
 
-Route::get('/', 'HomeController1@welcome');
-Route::get('/about', 'AboutController@about');
-Route::get('/articles/{id}', 'ArticleController@articles');
+// Route::get('/', 'HomeController1@welcome');
+// Route::get('/about', 'AboutController@about');
+// Route::get('/articles/{id}', 'ArticleController@articles');
 
 // Routes Ngodingers News (KUIS 1)
 // Route::get('/', 'MasterController@articleList')->name('artikels');
@@ -28,4 +28,9 @@ Route::get('/articles/{id}', 'ArticleController@articles');
 // Route::get('/donasi', 'DonationController');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('logout', 'Auth\LoginController@loggedOut');
+Route::get('/dashboard', 'HomeController@dashboard');
+Route::get('/articles/{id}', 'ArtikelsController@artikelFind');
+Route::get('/tentang', 'TentangController');
+Route::get('/donasi', 'DonationController');
