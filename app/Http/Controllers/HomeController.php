@@ -36,6 +36,6 @@ class HomeController extends Controller
         
         $artikels = Cache::get('artikels');
         $artikels = Article::paginate(6);
-        return view('childKuis.home', ['artikels' => $artikels], compact('artikels'));
+        return view('childKuis.home', ['artikels' => $artikels]);
     }
 }

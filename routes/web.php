@@ -35,11 +35,12 @@ Route::get('/dashboard', 'HomeController@dashboard');
 Route::get('/articles/{id}', 'ArtikelsController@artikelFind');
 Route::get('/tentang', 'TentangController');
 Route::get('/donasi', 'DonationController');
+Route::get('/manage', 'ArtikelsController@index')->name('manage');
 
 // Login routes
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Register routes
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
@@ -50,3 +51,10 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetFrom')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+// Process
+Route::get('/article/add', 'ArtikelsController@add');
+Route::post('/article/create', 'ArtikelsController@create');
+Route::get('/article/edit/{id}', 'ArtikelsController@edit');
+Route::post('/article/update/{id}', 'ArtikelsController@update');
+Route::get('/article/delete/{id}', 'ArtikelsController@delete');

@@ -6,12 +6,10 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
-    <title>Donasi Ngodingers - Ngodingers News</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/pricing/">
+    <title>Pembaharuan data - Ngodingers News</title>
 
     <!-- Bootstrap core CSS -->
-<link href="{{ asset('css/master-css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/master-css/bootstrap.min.css') }}" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -30,10 +28,12 @@
       }
     </style>
     <!-- Custom styles for this template -->
+    <link href="{{ asset('css/master-css/main-css/bs/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/master-css/main-css/tambahan/masterHome.css') }}" rel="stylesheet">
+
   </head>
   <body>
-  <header>
+    <header>
     <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
@@ -51,13 +51,13 @@
                     <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="{{ route('manage') }}">Kelola</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/tentang">About</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="/donasi">Donasi</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -80,81 +80,51 @@
             </div>
         </nav>
     </header>
+    
+<main role="main" class="container"><br><br>
 
-    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center" style="margin-top: 40px;">
-        <h1 class="display-4" style="margin-bottom: 30px;">Yuk Bantu Ngodingers Berkembang</h1>
-        <p class="lead">Bantuan dari kamu akan sangat berguna untuk perkembangan situs ini<br>Yuk donasi, sesuaikan budget kamu ya..</p>
+    <div class="starter-template" style="margin-bottom: 15px;">
+        <h3>Tambah Artikel</h3><br>
+        <a href="{{ route('manage') }}" class="btn btn-outline-info">< Kembali ke Kelola</a>
     </div>
 
+    <form action="/article/update/{{ $article->id }}" method="post" class="clearfix">
+        @csrf
+        <input type="hidden" name="id" value="{{ $article->id }}"><br>
+        <div class="form-group">
+            <label for="title">Judul</label>
+            <input type="text" class="form-control"
+            required="required" name="title" value="{{ $article->title }}" placeholder="Judul.."></br>
+        </div>
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea class="form-control" required="required" name="content" placeholder="konten.." id="exampleFormControlTextarea1" row="5">{{ $article->content }}</textarea>
+            <!-- <input type="text" class="form-control"
+            required="required" name="content" value="{{ $article->content }}" placeholder="konten.."></br> -->
+        </div>
+        <div class="form-group">
+            <label for="image">Gambar</label>
+            <input type="text" class="form-control"
+            required="required" name="image" value="{{ $article->image }}" placeholder="masukkan link gambar.."></br>
+        </div>
+        <div class="form-group">
+            <label for="image">Diubah oleh</label>
+            <input type="text" class="form-control"
+            required="required" name="writer" value="{{ $article->writer }}" readonly></br>
+        </div>
+        <button type="submit" name="add" class="btn btn-primary float-right">Update Data</button>
+    </form>
+</main>
+
+<!-- footer -->
+<footer class="py-5 bg-dark" style="margin-top: 50px;">
     <div class="container">
-    <div class="card-deck mb-3 text-center">
-        <div class="card mb-4 shadow-sm">
-        <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Standart</h4>
-        </div>
-        <div class="card-body">
-            <h1 class="card-title pricing-card-title">$5</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-            <li>&nbsp;</li>
-            <li>Donasi sebesar <b>5</b> dollar</li>
-            <li>Tidak punya budget banyak ?</li>
-            <li>Pilih Ini Aja</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary">Donasi</button>
-        </div>
-        </div>
-        <div class="card mb-4 shadow-sm">
-        <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Sultan</h4>
-        </div>
-        <div class="card-body">
-            <h1 class="card-title pricing-card-title">$999</h1>
-            <ul class="list-unstyled mt-3 mb-4">
-            <li>&nbsp;</li>
-            <li>Donasi sebesar <b>999</b> dollar</li>
-            <li>Kebanyakan Uang ?</li>
-            <li>Donasikan Aja Disini</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary">Donasi</button>
-        </div>
-        </div>
-        <div class="card mb-4 shadow-sm">
-        <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Custom</h4>
-        </div>
-        <div class="card-body">
-            <h1 class="card-title pricing-card-title">$??</h1>
-            <ul class="list-unstyled mt-3 mb-4">
-            <li>&nbsp;</li>
-            <li>&nbsp;</li>
-            <li>Pengen nentuin jumlahnya ?</li>
-            <li>Bisa kok, Isi aja disini</li>
-            </ul>
-            <form>
-                <div class="input-group mb-2" style="margin-bottom: 10px;">
-                    <div class="input-group-prepend">
-                    <div class="input-group-text">$</div>
-                    </div>
-                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="0000,00">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button">Donasi</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        </div>
+        <p class="m-0 text-center text-white">@yield('nama') | @yield('nim')</p>
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
     </div>
-
-
-    </div>
-
-    <!-- footer -->
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">@yield('nama') | @yield('nim')</p>
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-        </div>
-        <!-- /.container -->
-     </footer>
-</body>
+    <!-- /.container -->
+  </footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="{{ asset("vendor/jquery.slim.min.js") }}"><\/script>')</script><script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+      <script src="{{ asset('js/master-js/tambahan/offcanvas.js') }}"></script></body>
 </html>

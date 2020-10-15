@@ -86,7 +86,8 @@
       <p class="lead" >Baca berita terbaru seputar dunia pemrograman di dunia hanya di Ngodingers News</p>
       <p>
         <a href="#art-col" class="btn btn-primary my-2 btn-anima">Baca sekarang</a>
-        <!-- <a href="#" class="btn btn-secondary my-2">1931710137</a> -->
+        &nbsp;
+        <a href="/manage" class="btn btn-outline-light">Kelola Artikel</a>
       </p>
     </div>
   </section>
@@ -107,13 +108,14 @@
             <h2 class="artic-ttl card-text">{{ substr($col->title, 0, 40) }}...</h2><hr>
               <p class="card-text">{{ substr($col->content, 0, 80) }}...</p>
               <div class="d-flex justify-content-between align-items-center">
-                <small class="text-muted">Ngodingers</small>
 
-                <div class="btn-group">
+                <div class="btn-group" style="width: 100%; height: 30px;">
                   <a href="#{{ $col->id }}" class="btn btn-sm btn-outline-secondary">Detail artikel</a>
                   <a class="btn btn-sm btn-outline-primary" href="/articles/{{ $col->id }}">Baca artikel</a>
                 </div>
-              </div>
+                
+              </div><br>
+              <small class="text-muted" style="display: inline-block; text-align: center; width: 100%;">Ngodingers</small>
             </div>
           </div>
           

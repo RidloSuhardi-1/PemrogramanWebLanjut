@@ -9,6 +9,6 @@ class TentangController extends Controller
 {
     public function __invoke() {
         $about = About::all();
-        return view('childKuis.about', compact('about'));
+        return view('childKuis.about', ['about' => $about]);
     }
 }
