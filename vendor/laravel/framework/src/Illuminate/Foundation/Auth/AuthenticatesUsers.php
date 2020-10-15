@@ -161,8 +161,8 @@ trait AuthenticatesUsers
 
         $request->session()->regenerateToken();
 
-        // return $this->loggedOut($request) ?: redirect('/');
-        return $this->loggedOut($request) ?: redirect('/home');
+        return $this->loggedOut($request) ?: redirect('login');
+        // return redirect('/');
     }
 
     /**

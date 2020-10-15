@@ -38,6 +38,7 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">Selamat Datang {{ Auth::user()->name }}</h4>
               <h4 class="text-white">Deskripsi singkat</h4>
               <p class="text-muted">
                 Projek CMS dengan framework laravel untuk memenuhi tugas kuis 1, mata kuliah Pemrograman Web Lanjut<br><br>
@@ -55,8 +56,8 @@
                 <hr>
                 <li><a href="#keluhan" class="text-white">Tanyakan keluhanmu ke CS Ngodingers</a></li><hr>
                 <li>
-                  <form action="{{ route('logout') }}" method="POST">
-                      <button type="submit">Logout</button>
+                  <form action="/logout" method="POST">
+                  <button type="submit" class="btn btn-danger">Log Out</button>
                   </form>
                 </li>
               </ul>
