@@ -30,7 +30,7 @@
 // Auth::routes();
 
 // Main
-// Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'HomeController@dashboard');
 Route::get('/articles/{id}', 'ArtikelsController@artikelFind');
 Route::get('/tentang', 'TentangController');
