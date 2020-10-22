@@ -104,7 +104,7 @@
                 <td>{{ $a->title }}</td>
                 <td>{{ $a->updated_at }}</td>
                 <td><a href="article/edit/{{ $a->id }}" class="badge badge-warning">Edit</a></td>
-                <td><a href="article/delete/{{ $a->id }}" class="badge badge-danger">Hapus</a></td>
+                <td><a href="article/delete/{{ $a->id }}" class="badge badge-danger" onclick="return confirm('Hapus artikel  `{{ $a->title }}`')">Hapus</a></td>
             </tr>
             @endforeach
         </tbody>

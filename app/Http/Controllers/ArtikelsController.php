@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\Comment;
 
 class ArtikelsController extends Controller
 {
@@ -14,8 +15,8 @@ class ArtikelsController extends Controller
 
     public function artikelFind($id) {
         $article = Article::find($id);
-
-        return view('childKuis.artikel', ['id' => $id], ['article' => $article]);
+        $comment = Comment::all()->where('artikels_id', $id);
+        return view('childKuis.artikel', ['id' => $id], ['article' => $article])->with(compact('comment'));
     }
 
     // proses
@@ -51,8 +52,30 @@ class ArtikelsController extends Controller
 
     public function delete($id) {
         $article = Article::find($id);
+        $comment = Comment::all()->where('artikels_id', $id);
+        $comment->each->delete();
         $article->delete();
-
         return redirect('/manage');
+    }
+
+    // Comment
+    
+    public function addCom($id, Request $request) {
+        $comment = new Comment;
+
+        $comment->artikels_id = $request->artikels_id;
+        $comment->name = $request->name;
+        $comment->content = $request->content;
+        $comment->comment_id = $request->comment_id;
+        $comment->save();
+
+        return redirect('/articles/'.$id.'#C');
+    }
+
+    public function delCom($id, $articleID) {
+        $comment = Comment::find($id);
+        $comment->delete();
+
+        return redirect('/articles/'.$articleID.'#C');
     }
 }

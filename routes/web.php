@@ -58,3 +58,7 @@ Route::post('/article/create', 'ArtikelsController@create');
 Route::get('/article/edit/{id}', 'ArtikelsController@edit');
 Route::post('/article/update/{id}', 'ArtikelsController@update');
 Route::get('/article/delete/{id}', 'ArtikelsController@delete');
+
+// Comment Process
+Route::post('/article/addComm/{id}', 'ArtikelsController@addCom');
+Route::get('/article/delComm/{id}/{articleid}', 'ArtikelsController@delCom');

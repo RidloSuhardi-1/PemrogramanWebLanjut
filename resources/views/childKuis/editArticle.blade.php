@@ -10,6 +10,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/master-css/bootstrap.min.css') }}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <style>
       .bd-placeholder-img {
@@ -84,7 +85,7 @@
 <main role="main" class="container"><br><br>
 
     <div class="starter-template" style="margin-bottom: 15px;">
-        <h3>Tambah Artikel</h3><br>
+        <h3>Edit Artikel</h3><br>
         <a href="{{ route('manage') }}" class="btn btn-outline-info">< Kembali ke Kelola</a>
     </div>
 
@@ -104,11 +105,15 @@
         </div>
         <div class="form-group">
             <label for="image">Gambar</label>
-            <input type="text" class="form-control"
+            <input type="text" class="form-control" id="imgName"
             required="required" name="image" value="{{ $article->image }}" placeholder="masukkan link gambar.."></br>
         </div>
         <div class="form-group">
-            <label for="image">Diubah oleh</label>
+            <label for="image" style="display: block;">Preview</label>
+            <img src="{{ $article->image }}" class="img-fluid img-thumbnail" id="imgHolder" style="height: 200px;" alt="Responsive image">
+        </div>
+        <div class="form-group">
+            <label for="image">Diposting oleh</label>
             <input type="text" class="form-control"
             required="required" name="writer" value="{{ $article->writer }}" readonly></br>
         </div>
@@ -124,7 +129,11 @@
     </div>
     <!-- /.container -->
   </footer>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="{{ asset('js/master-js/tambahan/functionReadUrl.js') }}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="{{ asset("vendor/jquery.slim.min.js") }}"><\/script>')</script><script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
       <script src="{{ asset('js/master-js/tambahan/offcanvas.js') }}"></script></body>
 </html>

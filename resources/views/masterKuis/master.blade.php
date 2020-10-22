@@ -41,7 +41,7 @@
               <h4 class="text-white">Selamat Datang {{ Auth::user()->name }}</h4>
               <h4 class="text-white">Deskripsi singkat</h4>
               <p class="text-muted">
-                Projek CMS dengan framework laravel untuk memenuhi tugas kuis 1, mata kuliah Pemrograman Web Lanjut<br><br>
+                Projek CMS dengan framework laravel untuk memenuhi tugas UTS, mata kuliah Pemrograman Web Lanjut<br><br>
                 Nama : @yield('nama')<br>
                 NIM : @yield('nim')<br>
                 Kelas : MI @yield('kelas')
@@ -51,6 +51,7 @@
               <h4 class="text-white">Hai Ngodingers Disini...</h4>
               <ul class="list-unstyled">
                 <li><a href="/dashboard" class="text-white">Home</a></li>
+                <li><a href="{{ route('manage') }}" class="text-white">Kelola Artikel</a></li>
                 <li><a href="/tentang" class="text-white">Apa itu Ngodingers ?</a></li><hr>
                 <li><a href="/donasi" class="text-white">Donasi Ngodingers</a></li>
                 <hr>
@@ -129,7 +130,7 @@
                   <span>Dibuat pada : {{ $col->created_at }}</span>
                   <span>Penulis : <b>{{ $col->writer }}</b></span>
 
-                  <a class="btn btn-lg btn-primary btn-modal" href="#">Tutup</a>
+                  <a class="btn btn-lg btn-primary btn-modal" href="#art-col">Tutup</a>
               </div>
           </div>
         </div>
