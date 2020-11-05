@@ -161,8 +161,8 @@ trait AuthenticatesUsers
 
         $request->session()->regenerateToken();
 
-        return $this->loggedOut($request) ?: redirect('login');
-        // return redirect('/');
+        return $this->loggedOut($request) ? : redirect('home');
+
     }
 
     /**
@@ -173,7 +173,7 @@ trait AuthenticatesUsers
      */
     protected function loggedOut(Request $request)
     {
-        //
+        return redirect('login');
     }
 
     /**

@@ -57,6 +57,6 @@ trait RegistersUsers
      */
     protected function registered(Request $request, $user)
     {
-        return redirect('login');
+        return redirect('/dashboard');
     }
 }
