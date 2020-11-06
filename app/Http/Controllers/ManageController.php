@@ -4,14 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 use App\Article;
+use App\User;
 use App\Comment;
 
 class ManageController extends Controller
 {
-    public function index() {
+    public function __construct() {
+        // $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+            if(Gate::allows('manage-articles')) return $next ($request);
+            abort(403, 'Anda tidak memiliki cukup hak akses');
+        });
+    }
+
+    public function articlesView() {
         $article = Article::all();
-        return view('childKuis.manage', ['article' => $article]);
+        return view('childKuis.manageArticles', ['article' => $article]);
     }
 
     // proses
@@ -26,7 +37,7 @@ class ManageController extends Controller
             'image' => $request->image,
             'writer' => $request->writer
         ]);
-        return redirect('/manage');
+        return redirect('/manageArticles');
     }
 
     public function edit($id) {
@@ -42,7 +53,7 @@ class ManageController extends Controller
         $article->writer = $request->writer;
         $article->save();
 
-        return redirect('/manage');
+        return redirect('/manageArticles');
     }
 
     public function delete($id) {
@@ -50,27 +61,6 @@ class ManageController extends Controller
         $comment = Comment::all()->where('artikels_id', $id);
         $comment->each->delete();
         $article->delete();
-        return redirect('/manage');
-    }
-
-    // Comment
-    
-    public function addCom($id, Request $request) {
-        $comment = new Comment;
-
-        $comment->artikels_id = $request->artikels_id;
-        $comment->name = $request->name;
-        $comment->content = $request->content;
-        $comment->comment_id = $request->comment_id;
-        $comment->save();
-
-        return redirect('/articles/'.$id.'#C');
-    }
-
-    public function delCom($id, $articleID) {
-        $comment = Comment::find($id);
-        $comment->delete();
-
-        return redirect('/articles/'.$articleID.'#C');
+        return redirect('/manageArticles');
     }
 }

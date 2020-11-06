@@ -2,7 +2,7 @@
 
 @extends('masterKuis.masterContent')
 
-@section('title', '$article->title')
+@section('title', $article->title)
 
 @section('main')
   <!-- Page Content -->

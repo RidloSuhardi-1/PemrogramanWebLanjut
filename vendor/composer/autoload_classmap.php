@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AdministratorSeeder' => $baseDir . '/database/seeds/AdministratorSeeder.php',
     'App\\About' => $baseDir . '/app/About.php',
     'App\\Article' => $baseDir . '/app/Article.php',
     'App\\Comment' => $baseDir . '/app/Comment.php',
@@ -24,6 +25,7 @@ return array(
     'App\\Http\\Controllers\\DonationController' => $baseDir . '/app/Http/Controllers/DonationController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\HomeController1' => $baseDir . '/app/Http/Controllers/HomeController1.php',
+    'App\\Http\\Controllers\\ManageController' => $baseDir . '/app/Http/Controllers/ManageController.php',
     'App\\Http\\Controllers\\MasterController' => $baseDir . '/app/Http/Controllers/MasterController.php',
     'App\\Http\\Controllers\\TentangController' => $baseDir . '/app/Http/Controllers/TentangController.php',
     'App\\Http\\Controllers\\WelcomeController' => $baseDir . '/app/Http/Controllers/WelcomeController.php',

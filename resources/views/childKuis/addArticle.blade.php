@@ -34,11 +34,11 @@
 
   </head>
   <body>
-    <header>
+  <header>
     <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
-            <a href="/dashboard" class="navbar-brand d-flex align-items-center">
+            <a href="@if (Auth::user()->roles === 'Administrator') # @else /dashboard @endif" class="navbar-brand d-flex align-items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24" focusable="false"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
                 <strong>&nbsp;Ngodingers News</strong>
             </a>
@@ -47,19 +47,33 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+
+                <li class="nav-item {{ Route::is('dashboard') ? 'active' : '' }}">
+                    @can('user-display')
                     <a class="nav-link" href="/dashboard">Home
                     <span class="sr-only">(current)</span>
                     </a>
+                    @endcan
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('manage') }}">Kelola</a>
+                <li class="nav-item {{ Route::is('manageUsers') ? 'active' : '' }}">
+                    @can('manage-articles')
+                    <a class="nav-link" href="{{ route('manageUsers') }}">Kelola User</a>
+                    @endcan
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Route::is('manageArticles') ? 'active' : '' }}">
+                    @can('manage-articles')
+                    <a class="nav-link" href="{{ route('manageArticles') }}">Kelola Artikel</a>
+                    @endcan
+                </li>
+                <li class="nav-item {{ Route::is('about') ? 'active' : '' }}">
+                    @can('user-display')
                     <a class="nav-link" href="/tentang">About</a>
+                    @endcan
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Route::is('donasi') ? 'active' : '' }}">
+                    @can('user-display')
                     <a class="nav-link" href="/donasi">Donasi</a>
+                    @endcan
                 </li>
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -76,6 +90,7 @@
                         @csrf
                     </form>
                 </li>
+
                 </ul>
             </div>
             </div>
@@ -86,7 +101,7 @@
 
     <div class="starter-template" style="margin-bottom: 15px;">
         <h3>Tambah Artikel</h3><br>
-        <a href="{{ route('manage') }}" class="btn btn-outline-info">< Kembali ke Kelola</a>
+        <a href="{{ route('manageArticles') }}" class="btn btn-outline-info">< Kembali ke Kelola Artikel</a>
     </div>
 
     <form action="/article/create" method="post" class="clearfix">
@@ -121,7 +136,7 @@
 <!-- footer -->
 <footer class="py-5 bg-dark" style="margin-top: 50px;">
     <div class="container">
-        <p class="m-0 text-center text-white">@yield('nama') | @yield('nim')</p>
+        <p class="m-0 text-center text-white">Ahmad Ridlo Suhardi | 1931710137</p>
       <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
     </div>
     <!-- /.container -->

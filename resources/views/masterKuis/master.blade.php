@@ -51,7 +51,11 @@
               <h4 class="text-white">Hai Ngodingers Disini...</h4>
               <ul class="list-unstyled">
                 <li><a href="/dashboard" class="text-white">Home</a></li>
-                <li><a href="{{ route('manage') }}" class="text-white">Kelola Artikel</a></li>
+                <li>
+                  @can('manage-articles')
+                  <a href="{{ route('manageArticles') }}" class="text-white">Kelola Artikel</a>
+                  @endcan
+                </li>
                 <li><a href="/tentang" class="text-white">Apa itu Ngodingers ?</a></li><hr>
                 <li><a href="/donasi" class="text-white">Donasi Ngodingers</a></li>
                 <hr>
@@ -88,7 +92,9 @@
       <p>
         <a href="#art-col" class="btn btn-primary my-2 btn-anima">Baca sekarang</a>
         &nbsp;
-        <a href="/manage" class="btn btn-outline-light">Kelola Artikel</a>
+        @can('manage-articles')
+        <a href="/manageArticles" class="btn btn-outline-light">Kelola Artikel</a>
+        @endcan
       </p>
     </div>
   </section>

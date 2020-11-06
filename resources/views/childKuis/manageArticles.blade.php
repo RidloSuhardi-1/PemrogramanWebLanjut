@@ -22,7 +22,7 @@
         <tbody>
             @foreach($article AS $a)
             <tr>
-                <td>{{ $a->id }}</td>
+                <td>{{ $loop->iteration }}</td>
                 <td>{{ $a->title }}</td>
                 <td>{{ $a->updated_at }}</td>
                 <td><a href="article/edit/{{ $a->id }}" class="badge badge-warning">Edit</a></td>

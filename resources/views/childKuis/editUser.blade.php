@@ -6,12 +6,11 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
-    <title>@yield('title') - Ngodingers News</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/pricing/">
+    <title>Pembaharuan data - Ngodingers News</title>
 
     <!-- Bootstrap core CSS -->
-<link href="{{ asset('css/master-css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/master-css/bootstrap.min.css') }}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <style>
       .bd-placeholder-img {
@@ -30,14 +29,11 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="{{ asset('css/master-css/main-css/tambahan/masterHome.css') }}" rel="stylesheet">
     <link href="{{ asset('css/master-css/main-css/bs/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/master-css/main-css/tambahan/masterHome.css') }}" rel="stylesheet">
-    
+
   </head>
   <body>
-  <!-- navigation/header -->
-  <!-- end navigation -->
   <header>
     <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -100,28 +96,67 @@
             </div>
         </nav>
     </header>
+    
+<main role="main" class="container"><br><br>
 
-    <!-- main -->
-      @yield('main')
-    <!-- end main -->
+    <div class="starter-template" style="margin-bottom: 15px;">
+        <h3>Edit User</h3><br>
+        <a href="{{ route('manageUsers') }}" class="btn btn-outline-info">< Kembali ke Kelola User</a>
+    </div>
 
-    <!-- footer -->
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Ahmad Ridlo Suhardi | 1931710137</p>
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    <form action="/users/updateUser/{{ $user->id }}" method="POST" class="clearfix">
+        @csrf
+        <input type="hidden" name="id" value="{{ $user->id }}"><br>
+        <div class="form-group">
+            <label for="title">Nama</label>
+            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus>
+
+            @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
-    </footer>
+        <div class="form-group">
+            <label for="content">Email</label>
+            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email">
+
+            @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="roles">Roles</label>
+
+            <select name="roles" class="form-control" id="roles">
+                <optgroup label="Current user">
+                    <option value="{{ $user->roles }}">{{ $user->roles }}</option>
+                </optgroup>
+                <optgroup label="Change user">
+                    <option value="User">User</option>
+                    <option value="Administrator">Administrator</option>
+                </optgroup>
+            </select>
+        </div>
+        <button type="submit" name="add" class="btn btn-primary float-right">Update Data</button>
+    </form>
+</main>
+
+<!-- footer -->
+<footer class="py-5 bg-dark" style="margin-top: 50px;">
+    <div class="container">
+        <p class="m-0 text-center text-white">Ahmad Ridlo Suhardi | 1931710137</p>
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
 
     <!-- Custom JavaScript -->
-    <script src="{{ asset('js/master-js/tambahan/functionComment.js') }}"></script>
     <script src="{{ asset('js/master-js/tambahan/functionReadUrl.js') }}"></script>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script>window.jQuery || document.write('<script src="{{ asset("vendor/jquery.slim.min.js") }}"><\/script>')</script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/master-js/tambahan/offcanvas.js') }}"></script>
-
-</body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="{{ asset("vendor/jquery.slim.min.js") }}"><\/script>')</script><script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+      <script src="{{ asset('js/master-js/tambahan/offcanvas.js') }}"></script></body>
 </html>

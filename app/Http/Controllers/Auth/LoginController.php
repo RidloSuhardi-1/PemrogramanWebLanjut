@@ -29,7 +29,14 @@ class LoginController extends Controller
      * @var string
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
-    // protected $redirectTo = '/dashboard';
+    public function redirectTo() {
+        $for = [
+            'Administrator' => 'manageArticles',
+            'User' => 'dashboard',
+        ];
+
+        return $this->redirectTo = route($for[auth()->user()->roles]);
+    }
 
     /**
      * Create a new controller instance.
@@ -51,6 +58,6 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        return redirect('/dashboard');
+        // return redirect('/dashboard');
     }
 }

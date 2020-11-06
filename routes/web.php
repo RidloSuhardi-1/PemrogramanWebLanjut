@@ -31,11 +31,12 @@ Auth::routes();
 
 // Main
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/dashboard', 'HomeController@dashboard');
+Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 Route::get('/articles/{id}', 'ArtikelsController@artikelFind');
-Route::get('/tentang', 'TentangController');
-Route::get('/donasi', 'DonationController');
-Route::get('/manage', 'ManageController@index')->name('manage');
+Route::get('/tentang', 'TentangController')->name('about');
+Route::get('/donasi', 'DonationController')->name('donasi');
+Route::get('/manageUsers', 'ManageUsersController@usersView')->name('manageUsers');
+Route::get('/manageArticles', 'ManageController@articlesView')->name('manageArticles');
 
 // Process
 Route::get('/article/add', 'ManageController@add');
@@ -44,6 +45,12 @@ Route::get('/article/edit/{id}', 'ManageController@edit');
 Route::post('/article/update/{id}', 'ManageController@update');
 Route::get('/article/delete/{id}', 'ManageController@delete');
 
+Route::get('/users/register', 'ManageUsersController@register');
+Route::post('/users/createUser', 'ManageUsersController@create');
+Route::get('/users/editUser/{id}', 'ManageUsersController@edit');
+Route::post('/users/updateUser/{id}', 'ManageUsersController@update');
+Route::get('/users/dropUser/{id}', 'ManageUsersController@drop');
+
 // Comment Process
-Route::post('/article/addComm/{id}', 'ManageController@addCom');
-Route::get('/article/delComm/{id}/{articleid}', 'ManageController@delCom');
+Route::post('/article/addComm/{id}', 'ArtikelsController@addCom');
+Route::get('/article/delComm/{id}/{articleid}', 'ArtikelsController@delCom');

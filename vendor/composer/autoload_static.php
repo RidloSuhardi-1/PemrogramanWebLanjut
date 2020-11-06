@@ -438,6 +438,7 @@ class ComposerStaticInit4a3ea78f457c4a729bd4318f108a8280
     );
 
     public static $classMap = array (
+        'AdministratorSeeder' => __DIR__ . '/../..' . '/database/seeds/AdministratorSeeder.php',
         'App\\About' => __DIR__ . '/../..' . '/app/About.php',
         'App\\Article' => __DIR__ . '/../..' . '/app/Article.php',
         'App\\Comment' => __DIR__ . '/../..' . '/app/Comment.php',
@@ -456,6 +457,7 @@ class ComposerStaticInit4a3ea78f457c4a729bd4318f108a8280
         'App\\Http\\Controllers\\DonationController' => __DIR__ . '/../..' . '/app/Http/Controllers/DonationController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\HomeController1' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController1.php',
+        'App\\Http\\Controllers\\ManageController' => __DIR__ . '/../..' . '/app/Http/Controllers/ManageController.php',
         'App\\Http\\Controllers\\MasterController' => __DIR__ . '/../..' . '/app/Http/Controllers/MasterController.php',
         'App\\Http\\Controllers\\TentangController' => __DIR__ . '/../..' . '/app/Http/Controllers/TentangController.php',
         'App\\Http\\Controllers\\WelcomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/WelcomeController.php',
