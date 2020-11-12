@@ -22,6 +22,9 @@
             </tr>
         </thead>
         <tbody>
+            @if($user->isEmpty())
+                <td colspan="7">Tidak ada data yang ditampilkan</td>
+            @else
             @foreach($user AS $a)
             <tr>
                 <td>{{ $loop->iteration }}</td>
@@ -33,6 +36,7 @@
                 <td><a href="users/dropUser/{{ $a->id }}" class="badge badge-danger" onclick="return confirm('Hapus User  `{{ $a->name }}`')">Hapus</a></td>
             </tr>
             @endforeach
+            @endif
         </tbody>
     </table>
 </main>

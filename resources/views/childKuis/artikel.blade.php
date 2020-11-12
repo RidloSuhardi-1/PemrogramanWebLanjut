@@ -30,7 +30,7 @@
         <hr>
 
         <!-- Preview Image -->
-        <img class="img-fluid rounded" src="{{ $article->image }}" alt="">
+        <img class="img-fluid rounded" src="{{ asset('storage/'.$article->image) }}" alt="">
 
         <hr>
 

@@ -31,10 +31,14 @@ class ManageController extends Controller
     }
 
     public function create(Request $request) {
+        if ($request->file('image')) {
+            $image_name = $request->file('image')->store('images', 'public');
+        }
+
         Article::create([
             'title' => $request->title,
             'content' => $request->content,
-            'image' => $request->image,
+            'image' => $image_name,
             'writer' => $request->writer
         ]);
         return redirect('/manageArticles');
@@ -47,10 +51,21 @@ class ManageController extends Controller
     
     public function update($id, Request $request) {
         $article = Article::find($id);
+
         $article->title = $request->title;
         $article->content = $request->content;
-        $article->image = $request->image;
+        
+        // remove image
+        if($article->image && file_exists(storage_path('app/public/' . $article->image)))
+        {
+            \Storage::delete('public/'.$article->image);
+        }
+        // change with new image
+        $image_name = $request->file('image')->store('images', 'public');
+
+        $article->image = $image_name;
         $article->writer = $request->writer;
+
         $article->save();
 
         return redirect('/manageArticles');
@@ -58,6 +73,12 @@ class ManageController extends Controller
 
     public function delete($id) {
         $article = Article::find($id);
+
+        if($article->image && file_exists(storage_path('app/public/' . $article->image)))
+        {
+            \Storage::delete('public/'.$article->image);
+        }
+
         $comment = Comment::all()->where('artikels_id', $id);
         $comment->each->delete();
         $article->delete();

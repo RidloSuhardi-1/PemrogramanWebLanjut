@@ -44,6 +44,8 @@ Route::post('/article/create', 'ManageController@create');
 Route::get('/article/edit/{id}', 'ManageController@edit');
 Route::post('/article/update/{id}', 'ManageController@update');
 Route::get('/article/delete/{id}', 'ManageController@delete');
+// Print PDF
+Route::get('/article/cetak_pdf', 'ArtikelsController@cetak_pdf');
 
 Route::get('/users/register', 'ManageUsersController@register');
 Route::post('/users/createUser', 'ManageUsersController@create');

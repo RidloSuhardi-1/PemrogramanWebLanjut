@@ -105,12 +105,26 @@
       <div class="row">
           
         <!-- card -->
-
+        @if ($artikels->isEmpty())
+          <div class="card text-center w-100 p-3">
+            <div class="card-header">
+              Message
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Selamat datang di Ngodingers</h5>
+              <p class="card-text">Wah, sepertinya kami masih belum punya camilan untuk kamu</p>
+              <a href="#inputEmail4" class="btn btn-primary">Langganan dulu yuk</a>
+            </div>
+            <div class="card-footer text-muted">
+              Tim Ngodingers
+            </div>
+          </div>
+        @else
         @foreach($artikels As $col)
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
             <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-            <img class="bd-placeholder-img card-img-top" src="{{ $col->image }}" alt="">
+            <img class="bd-placeholder-img card-img-top" src="{{ asset('storage/'.$col->image) }}" alt="">
             <div class="card-body">
             <h2 class="artic-ttl card-text">{{ substr($col->title, 0, 40) }}...</h2><hr>
               <p class="card-text">{{ substr($col->content, 0, 80) }}...</p>
@@ -141,6 +155,7 @@
           </div>
         </div>
         @endforeach
+        @endif
 
         <!-- pagination -->
 
