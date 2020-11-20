@@ -39,7 +39,9 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{$a->title}}</td>
-                    <td>{{ $a->image }}</td>
+                    <td>
+                        <img src="{{ public_path('storage/'.$a->image) }}" alt="$a->image" width="50" height="50">
+                    </td>
                     <td>{{$a->writer}}</td>
                 </tr>
                 @endforeach
