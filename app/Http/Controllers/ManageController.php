@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Article;
 use App\User;
 use App\Comment;
+use PDF;
 
 class ManageController extends Controller
 {
@@ -21,7 +22,7 @@ class ManageController extends Controller
     }
 
     public function articlesView() {
-        $article = Article::all();
+        $article = Article::paginate(5);
         return view('childKuis.manageArticles', ['article' => $article]);
     }
 
@@ -48,22 +49,25 @@ class ManageController extends Controller
         $article = Article::find($id);
         return view('childKuis.editArticle', ['article' => $article]);
     }
-    
+
     public function update($id, Request $request) {
         $article = Article::find($id);
 
         $article->title = $request->title;
         $article->content = $request->content;
-        
-        // remove image
-        if($article->image && file_exists(storage_path('app/public/' . $article->image)))
-        {
-            \Storage::delete('public/'.$article->image);
-        }
-        // change with new image
-        $image_name = $request->file('image')->store('images', 'public');
 
-        $article->image = $image_name;
+        // remove image
+        // if image request is exist, then remove existing image on storage
+        if($request->hasFile('image')) {
+            if($article->image && file_exists(storage_path('app/public/' . $article->image)))
+            {
+                \Storage::delete('public/'.$article->image);
+            }
+            // change with new image
+            $image_name = $request->file('image')->store('images', 'public');
+            $article->image = $image_name;
+        }
+
         $article->writer = $request->writer;
 
         $article->save();
@@ -83,5 +87,22 @@ class ManageController extends Controller
         $comment->each->delete();
         $article->delete();
         return redirect('/manageArticles');
+    }
+
+    // search
+    public function searchArticle(Request $request) {
+        // $article = Article::when($request->keyword, function ($query) use ($request) {
+        //     $query->where('title', 'like', '%'.$request->keyword.'%');
+        // })->get();
+        $article = Article::where('title', 'like', '%'.$request->keyword.'%')->paginate(5);
+
+        return view('childKuis.manageArticles', compact('article'));
+    }
+
+    // cetak PDF
+    public function cetak_pdf() {
+        $article = Article::all();
+        $pdf = PDF::loadview('childKuis.artikel_pdf', ['article' => $article]);
+        return $pdf->stream();
     }
 }

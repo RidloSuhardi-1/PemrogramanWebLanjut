@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Article;
 use App\Comment;
-use PDF;
 
 class ArtikelsController extends Controller
 {
@@ -20,7 +19,7 @@ class ArtikelsController extends Controller
     }
 
     // Comment
-    
+
     public function addCom($id, Request $request) {
         $comment = new Comment;
 
@@ -38,12 +37,5 @@ class ArtikelsController extends Controller
         $comment->delete();
 
         return redirect('/articles/'.$articleID.'#C');
-    }
-
-    // cetak PDF
-    public function cetak_pdf() {
-        $article = Article::all();
-        $pdf = PDF::loadview('childKuis.artikel_pdf', ['article' => $article]);
-        return $pdf->stream();
     }
 }

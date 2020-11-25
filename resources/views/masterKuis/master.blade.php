@@ -34,42 +34,6 @@
   </head>
   <body>
     <header>
-      <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-8 col-md-7 py-4">
-              <h4 class="text-white">Selamat Datang {{ Auth::user()->name }}</h4>
-              <h4 class="text-white">Deskripsi singkat</h4>
-              <p class="text-muted">
-                Projek CMS dengan framework laravel untuk memenuhi tugas UTS, mata kuliah Pemrograman Web Lanjut<br><br>
-                Nama : @yield('nama')<br>
-                NIM : @yield('nim')<br>
-                Kelas : MI @yield('kelas')
-              </p>
-            </div>
-            <div class="col-sm-4 offset-md-1 py-4">
-              <h4 class="text-white">Hai Ngodingers Disini...</h4>
-              <ul class="list-unstyled">
-                <li><a href="/dashboard" class="text-white">Home</a></li>
-                <li>
-                  @can('manage-articles')
-                  <a href="{{ route('manageArticles') }}" class="text-white">Kelola Artikel</a>
-                  @endcan
-                </li>
-                <li><a href="/tentang" class="text-white">Apa itu Ngodingers ?</a></li><hr>
-                <li><a href="/donasi" class="text-white">Donasi Ngodingers</a></li>
-                <hr>
-                <li><a href="#keluhan" class="text-white">Tanyakan keluhanmu ke CS Ngodingers</a></li><hr>
-                <li>
-                  <form action="/logout" method="POST">
-                  <button type="submit" class="btn btn-danger">Log Out</button>
-                  </form>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container d-flex justify-content-between">
           <a href="/dashboard" class="navbar-brand d-flex align-items-center">
@@ -81,6 +45,69 @@
           </button>
         </div>
       </div>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+            <a href="@if (Auth::user()->roles === 'Administrator') # @else /dashboard @endif" class="navbar-brand d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24" focusable="false"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
+                <strong>&nbsp;Ngodingers News</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item {{ Route::is('dashboard') ? 'active' : '' }}">
+                    @can('user-display')
+                    <a class="nav-link" href="/dashboard">Home
+                    <span class="sr-only">(current)</span>
+                    </a>
+                    @endcan
+                </li>
+                <li class="nav-item {{ Route::is('manageUsers') ? 'active' : '' }}">
+                    @can('manage-articles')
+                    <a class="nav-link" href="{{ route('manageUsers') }}">Kelola User</a>
+                    @endcan
+                </li>
+                <li class="nav-item {{ Route::is('manageArticles') ? 'active' : '' }}">
+                    @can('manage-articles')
+                    <a class="nav-link" href="{{ route('manageArticles') }}">Kelola Artikel</a>
+                    @endcan
+                </li>
+                <li class="nav-item {{ Route::is('about') ? 'active' : '' }}">
+                    @can('user-display')
+                    <a class="nav-link" href="/tentang">About</a>
+                    @endcan
+                </li>
+                <li class="nav-item {{ Route::is('donasi') ? 'active' : '' }}">
+                    @can('user-display')
+                    <a class="nav-link" href="/donasi">Donasi</a>
+                    @endcan
+                </li>
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <img src="@if(Auth::user()->profile_image == 'empty') {{ asset('storage/images/default.png') }} @else {{ asset('storage/'.Auth::user()->profile_image) }} @endif" class="rounded" width=20 height=20 alt="{{ Auth::user()->profile_image }}">
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/users/editUser/{{ Auth::user()->id }}">
+                        {{ __('Ubah Profil') }}
+                    </a>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+
+                </ul>
+            </div>
+            </div>
+        </nav>
     </header>
 
 <main role="main">
@@ -124,7 +151,7 @@
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
             <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-            <img class="bd-placeholder-img card-img-top" src="{{ asset('storage/'.$col->image) }}" alt="">
+            <img class="bd-placeholder-img card-img-top" src="{{ asset('storage/'.$col->image) }}" alt="" style="height: 200px; overflow: hidden;">
             <div class="card-body">
             <h2 class="artic-ttl card-text">{{ substr($col->title, 0, 40) }}...</h2><hr>
               <p class="card-text">{{ substr($col->content, 0, 80) }}...</p>
@@ -200,12 +227,12 @@
 
           @foreach($artikels As $artiSlide)
           <div class="carousel-item">
-          <img class="bd-placeholder-img" src="{{ $artiSlide->image }}" alt="OK">
+          <img class="bd-placeholder-img" src="{{ asset('storage/'.$artiSlide->image) }}" alt="OK">
               <div class="container">
               <div class="carousel-caption">
                   <h1>{{ $artiSlide->title }}</h1>
                   <p>{{ substr($artiSlide->content, 0, 110) }}...</p>  
-                  <p><a class="btn btn-lg btn-primary" href="{{ '/artikel/'.$artiSlide->id }}" role="button">Baca sekarang</a></p>
+                  <p><a class="btn btn-lg btn-primary" href="{{ '/articles/'.$artiSlide->id }}" role="button">Baca sekarang</a></p>
               </div>
               </div>
           </div>

@@ -12,6 +12,7 @@
 
     <!-- Bootstrap core CSS -->
 <link href="{{ asset('css/master-css/bootstrap.min.css') }}" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <style>
       .bd-placeholder-img {
@@ -30,7 +31,6 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="{{ asset('css/master-css/main-css/tambahan/masterHome.css') }}" rel="stylesheet">
     <link href="{{ asset('css/master-css/main-css/bs/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/master-css/main-css/tambahan/masterHome.css') }}" rel="stylesheet">
     
@@ -81,9 +81,13 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <img src="@if(Auth::user()->profile_image == 'empty') {{ asset('storage/images/default.png') }} @else {{ asset('storage/'.Auth::user()->profile_image) }} @endif" class="rounded" width=20 height=20 alt="{{ Auth::user()->profile_image }}">
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/users/editUser/{{ Auth::user()->id }}">
+                        {{ __('Ubah Profil') }}
+                    </a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
@@ -116,6 +120,7 @@
     <!-- Custom JavaScript -->
     <script src="{{ asset('js/master-js/tambahan/functionComment.js') }}"></script>
     <script src="{{ asset('js/master-js/tambahan/functionReadUrl.js') }}"></script>
+    <script src="{{ asset('js/master-js/tambahan/filenameDisplay.js') }}"></script>
 
     <!-- Bootstrap core JavaScript -->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>

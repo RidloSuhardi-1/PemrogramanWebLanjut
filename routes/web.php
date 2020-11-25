@@ -44,15 +44,22 @@ Route::post('/article/create', 'ManageController@create');
 Route::get('/article/edit/{id}', 'ManageController@edit');
 Route::post('/article/update/{id}', 'ManageController@update');
 Route::get('/article/delete/{id}', 'ManageController@delete');
-// Print PDF
-Route::get('/article/cetak_pdf', 'ArtikelsController@cetak_pdf');
+// Search user
+Route::get('/searchArticle', 'ManageController@searchArticle');
+// Print PDF - Artikel
+Route::get('/article/cetak_pdf', 'ManageController@cetak_pdf');
 
+// Comment Process
+Route::post('/article/addComm/{id}', 'ArtikelsController@addCom');
+Route::get('/article/delComm/{id}/{articleid}', 'ArtikelsController@delCom');
+
+//user
 Route::get('/users/register', 'ManageUsersController@register');
 Route::post('/users/createUser', 'ManageUsersController@create');
 Route::get('/users/editUser/{id}', 'ManageUsersController@edit');
 Route::post('/users/updateUser/{id}', 'ManageUsersController@update');
 Route::get('/users/dropUser/{id}', 'ManageUsersController@drop');
-
-// Comment Process
-Route::post('/article/addComm/{id}', 'ArtikelsController@addCom');
-Route::get('/article/delComm/{id}/{articleid}', 'ArtikelsController@delCom');
+// Search user
+Route::get('/searchUser', 'ManageUsersController@searchUser');
+// Print PDF - User
+Route::get('/users/cetak_pdf', 'ManageUsersController@cetak_pdf');
